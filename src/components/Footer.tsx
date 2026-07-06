@@ -79,8 +79,9 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Axono IoT Solutions. All rights reserved.
           </p>
           <div className="flex items-center gap-5 text-xs text-neutral-600">
-            <span className="hover:text-neutral-400 cursor-pointer transition-colors">Privacy Policy</span>
-            <span className="hover:text-neutral-400 cursor-pointer transition-colors">Terms of Use</span>
+            <Link to="/privacy-policy" className="hover:text-neutral-400 transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-use" className="hover:text-neutral-400 transition-colors">Terms of Use</Link>
+            <Link to="/eula" className="hover:text-neutral-400 transition-colors">EULA</Link>
           </div>
         </div>
       </div>

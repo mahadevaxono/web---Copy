@@ -10,6 +10,9 @@ import FacilitySolution from './pages/solutions/Facility';
 import Products from './pages/Products';
 import Company from './pages/Company';
 import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/legal/PrivacyPolicy';
+import TermsOfUse from './pages/legal/TermsOfUse';
+import EULA from './pages/legal/EULA';
 
 function ScrollToTop() {
   const location = useLocation();
@@ -33,6 +36,9 @@ function AnimatedRoutes() {
         <Route path="/products" element={<Products />} />
         <Route path="/company" element={<Company />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
+        <Route path="/eula" element={<EULA />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </main>
