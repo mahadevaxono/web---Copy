@@ -60,7 +60,7 @@ export default function EULA() {
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight mb-4">
             End User License Agreement
           </h1>
-          <p className="text-neutral-400 text-sm mb-4">Last updated: July 2025</p>
+          <p className="text-neutral-400 text-sm mb-4">Last updated: May 2026</p>
           <p className="text-neutral-400 text-sm italic max-w-2xl">
             IMPORTANT: Please read this End User License Agreement carefully before installing or using AXONO software. By installing, copying or using the software, you agree to be bound by the terms of this agreement.
           </p>
