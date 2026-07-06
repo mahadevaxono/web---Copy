@@ -70,7 +70,7 @@ export default function Company() {
             </div>
             <div className="relative overflow-hidden rounded-2xl shadow-xl reveal-right">
               <img
-                src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=900"
+                src="/images/complete.jpg"
                 alt="Team collaboration"
                 className="w-full h-80 object-cover"
               />
