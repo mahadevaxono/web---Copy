@@ -14,7 +14,7 @@ const products = [
     tagline: 'The bridge between your sensors and the cloud.',
     description:
       'A rugged, field-ready device that collects data from all connected sensors and transmits it securely to our cloud. Works with 4G LTE, WiFi, and Ethernet. Supports Modbus, analog, and digital sensor inputs.',
-    image: '/images/gateway2.png',
+    image: '/images/light_background.jpg',
     icon: Cpu,
     accentColor: 'teal',
     specs: [
