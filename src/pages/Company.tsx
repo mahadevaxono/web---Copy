@@ -147,7 +147,7 @@ export default function Company() {
               </div>
               <div className="col-span-2 rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=900"
+                  src="/images/webdash.png"
                   alt="Software dashboard"
                   className="w-full h-44 object-cover hover:scale-105 transition-transform duration-700"
                 />
