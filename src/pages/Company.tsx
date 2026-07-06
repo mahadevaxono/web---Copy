@@ -25,7 +25,7 @@ export default function Company() {
       {/* Hero */}
       <div className="relative h-72 sm:h-96 overflow-hidden">
         <img
-          src="/images/ligh_background.jpg"
+          src="/images/light_background.jpg"
           alt="Axono team"
           className="w-full h-full object-cover"
         />
