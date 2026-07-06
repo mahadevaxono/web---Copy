@@ -179,7 +179,7 @@ export default function Contact() {
                         </label>
                         <input
                           name="name" value={form.name} onChange={handleChange} onBlur={handleBlur}
-                          placeholder="John Smith"
+                        
                           className={inputClass(visibleError('name'))}
                         />
                         <FieldError msg={visibleError('name')} />
@@ -190,7 +190,7 @@ export default function Contact() {
                         </label>
                         <input
                           type="email" name="email" value={form.email} onChange={handleChange} onBlur={handleBlur}
-                          placeholder="john@company.com"
+                          
                           className={inputClass(visibleError('email'))}
                         />
                         <FieldError msg={visibleError('email')} />
@@ -215,7 +215,7 @@ export default function Contact() {
                         </label>
                         <input
                           name="company" value={form.company} onChange={handleChange} onBlur={handleBlur}
-                          placeholder="Your company name"
+                          
                           className={inputClass(visibleError('company'))}
                         />
                         <FieldError msg={visibleError('company')} />
