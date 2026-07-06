@@ -60,7 +60,7 @@ export default function TermsOfUse() {
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight mb-4">
             Terms of Use
           </h1>
-          <p className="text-neutral-400 text-sm">Last updated: July 2025</p>
+          <p className="text-neutral-400 text-sm">Last updated: May 2026</p>
         </div>
       </section>
 
