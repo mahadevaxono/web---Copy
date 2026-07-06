@@ -172,7 +172,7 @@ export default function Products() {
       {/* Page Hero */}
       <section className="bg-neutral-950 relative overflow-hidden noise">
         <div className="absolute inset-0">
-          <img src="/images/gateway2.png" alt="" className="w-full h-full object-cover opacity-10 object-center" />
+          <img src="/images/water_bg3.png" alt="" className="w-full h-full object-cover opacity-10 object-center" />
           <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/70 to-neutral-950/50" />
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-teal-700/10 rounded-full blur-3xl" />
