@@ -68,7 +68,7 @@ const products = [
     tagline: 'Compact sensors designed for the real world.',
     description:
       'Purpose-built sensors for temperature, humidity, pressure, flow, and level monitoring. Ultra-low power design with battery life measured in years. Wireless connectivity with simple QR-code setup.',
-    image: 'https://images.pexels.com/photos/1087727/pexels-photo-1087727.jpeg?auto=compress&cs=tinysrgb&w=900',
+    image: '/images/edge.png',
     icon: Zap,
     accentColor: 'teal',
     specs: [
