@@ -65,7 +65,7 @@ export default function PrivacyPolicy() {
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight mb-4">
             Privacy Policy
           </h1>
-          <p className="text-neutral-400 text-sm">Last updated: July 2025</p>
+          <p className="text-neutral-400 text-sm">Last updated: May 2026</p>
         </div>
       </section>
 
@@ -93,7 +93,7 @@ export default function PrivacyPolicy() {
           <div className="mt-12 bg-neutral-50 rounded-2xl p-6 border border-neutral-100">
             <p className="text-sm text-neutral-500">
               Questions about this policy? Contact us at{' '}
-              <a href="mailto:privacy@axono.io" className="text-teal-600 hover:underline">privacy@axono.io</a>
+              <a href="mailto:privacy@axono.io" className="text-teal-600 hover:underline">info@axonoiot.com</a>
             </p>
           </div>
         </div>
