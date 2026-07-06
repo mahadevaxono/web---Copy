@@ -140,14 +140,14 @@ export default function Company() {
               </div>
               <div className="rounded-2xl overflow-hidden">
                 <img
-                  src="/images/circuit_design.png"
+                  src="/images/cloud_platform.png"
                   alt="Circuit boards"
                   className="w-full h-48 object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
               <div className="col-span-2 rounded-2xl overflow-hidden">
                 <img
-                  src="/images/cloud_platform.png"
+                  src="/images/webdash.png"
                   alt="Software dashboard"
                   className="w-full h-44 object-cover hover:scale-105 transition-transform duration-700"
                 />
