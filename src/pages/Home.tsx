@@ -118,6 +118,7 @@ export default function Home() {
             className="absolute inset-0"
             style={{
               opacity: index === currentSlide ? 1 : 0,
+              pointerEvents: index === currentSlide ? 'auto' : 'none',
               transition: 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
           >
