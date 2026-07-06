@@ -183,10 +183,10 @@ export default function Contact() {
                     <MapPin className="w-3.5 h-3.5 text-teal-600" />
                   </div>
                   <address className="text-sm text-neutral-700 not-italic leading-relaxed">
-                    Axono IoT Solutions Pte. Ltd.<br />
-                    10 Anson Road, #12-01<br />
-                    International Plaza<br />
-                    Singapore 079903
+                    Axono IoT Solutions.<br />
+                     Incuspaze Olympia Crest<br />
+                    Plot No. 73, Rajiv Gandhi Salai,<br />
+                    Perungudi, Chennai, Tamil Nadu 600096
                   </address>
                 </div>
               </div>
