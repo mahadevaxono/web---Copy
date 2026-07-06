@@ -37,6 +37,8 @@ export default function Contact() {
       {/* Hero */}
       <section className="bg-neutral-950 relative overflow-hidden py-20 lg:py-28">
         <div className="absolute inset-0">
+          <img src="/images/light_background.jpg" alt="" className="w-full h-full object-cover opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/70 to-neutral-950/50" />
           <div className="absolute top-0 left-1/3 w-96 h-96 bg-teal-500/8 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-teal-700/8 rounded-full blur-3xl" />
         </div>
