@@ -140,7 +140,7 @@ export default function Company() {
               </div>
               <div className="rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="/images/circuit.png"
                   alt="Circuit boards"
                   className="w-full h-48 object-cover hover:scale-105 transition-transform duration-700"
                 />
