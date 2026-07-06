@@ -133,7 +133,7 @@ export default function Company() {
             <div className="grid grid-cols-2 gap-4 reveal-right">
               <div className="rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/163100/circuit-board-circuit-electronics-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="/images/webdash.png"
                   alt="Hardware manufacturing"
                   className="w-full h-48 object-cover hover:scale-105 transition-transform duration-700"
                 />
