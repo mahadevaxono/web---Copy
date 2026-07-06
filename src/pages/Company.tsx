@@ -133,7 +133,7 @@ export default function Company() {
             <div className="grid grid-cols-2 gap-4 reveal-right">
               <div className="rounded-2xl overflow-hidden">
                 <img
-                  src="/images/webdash.png"
+                  src="/images/water_meter.png"
                   alt="Hardware manufacturing"
                   className="w-full h-48 object-cover hover:scale-105 transition-transform duration-700"
                 />
