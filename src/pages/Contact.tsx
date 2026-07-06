@@ -108,7 +108,7 @@ export default function Contact() {
                         </label>
                         <input
                           required name="company" value={form.company} onChange={handleChange}
-                          placeholder="Acme Properties Ltd."
+                          
                           className={inputClass}
                         />
                       </div>
