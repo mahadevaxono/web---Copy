@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
+
+const API_ENDPOINT = 'https://ym5jkf1hk9.execute-api.ap-south-1.amazonaws.com/contact';
 
 const useReveal = () => {
   useEffect(() => {
@@ -13,24 +15,116 @@ const useReveal = () => {
   }, []);
 };
 
-const inputClass = `w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3.5 text-sm text-neutral-900 placeholder-neutral-400
-  focus:outline-none focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-500/10
-  transition-all duration-200`;
+interface FormFields {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  product: string;
+  message: string;
+}
+
+interface FormErrors {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  product: string;
+  message: string;
+}
+
+const BLANK_ERRORS: FormErrors = { name: '', email: '', phone: '', company: '', product: '', message: '' };
+
+function validate(f: FormFields): FormErrors {
+  const e = { ...BLANK_ERRORS };
+  if (!f.name.trim()) e.name = 'Full name is required';
+  if (!f.email.trim()) e.email = 'Email is required';
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = 'Enter a valid email address';
+  if (!f.phone.trim()) e.phone = 'Phone number is required';
+  else if (!/^[+]?[\d\s\-().]{7,20}$/.test(f.phone)) e.phone = 'Enter a valid phone number';
+  if (!f.company.trim()) e.company = 'Company name is required';
+  if (!f.product) e.product = 'Please select a product';
+  if (!f.message.trim()) e.message = 'Project description is required';
+  else if (f.message.trim().length < 20) e.message = 'Please provide at least 20 characters';
+  return e;
+}
+
+function hasErrors(e: FormErrors) {
+  return Object.values(e).some((v) => v !== '');
+}
+
+const inputClass = (error: string) =>
+  `w-full bg-neutral-50 border rounded-xl px-4 py-3.5 text-sm text-neutral-900 placeholder-neutral-400
+  focus:outline-none focus:bg-white focus:ring-2 transition-all duration-200 ${
+    error
+      ? 'border-red-400 focus:border-red-400 focus:ring-red-400/10'
+      : 'border-neutral-200 focus:border-teal-500 focus:ring-teal-500/10'
+  }`;
+
+function FieldError({ msg }: { msg: string }) {
+  if (!msg) return null;
+  return (
+    <p className="mt-1.5 flex items-center gap-1 text-xs text-red-500">
+      <AlertCircle size={11} /> {msg}
+    </p>
+  );
+}
 
 export default function Contact() {
   useReveal();
 
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', company: '', vertical: '', message: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [touched, setTouched] = useState<Partial<Record<keyof FormFields, boolean>>>({});
+  const [form, setForm] = useState<FormFields>({ name: '', email: '', phone: '', company: '', product: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const errors = validate(form);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setTouched((t) => ({ ...t, [e.target.name]: true }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setTouched({ name: true, email: true, phone: true, company: true, product: true, message: true });
+    if (hasErrors(errors)) return;
+
+    const nameParts = form.name.trim().split(/\s+/);
+    const firstName = nameParts[0];
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : 'xxxxxxxx';
+
+    setSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const res = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          company: form.company.trim(),
+          message: form.message.trim(),
+          timestamp: new Date().toISOString(),
+        }),
+      });
+      if (!res.ok) throw new Error(`Server error: ${res.status}`);
+      setSubmitted(true);
+    } catch {
+      setSubmitError('Something went wrong. Please try again or email us directly.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const visibleError = (field: keyof FormFields) => (touched[field] ? errors[field] : '');
 
   return (
     <div className="pt-14 bg-white">
@@ -77,73 +171,108 @@ export default function Contact() {
                 <div>
                   <h2 className="text-2xl font-semibold text-neutral-900 mb-2">Send us a message</h2>
                   <p className="text-neutral-500 mb-8">We respond within one business day.</p>
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit} noValidate className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-xs font-semibold text-neutral-600 uppercase tracking-wide mb-2">
                           Full Name <span className="text-teal-500">*</span>
                         </label>
                         <input
-                          required name="name" value={form.name} onChange={handleChange}
-                         
-                          className={inputClass}
+                          name="name" value={form.name} onChange={handleChange} onBlur={handleBlur}
+                          placeholder="John Smith"
+                          className={inputClass(visibleError('name'))}
                         />
+                        <FieldError msg={visibleError('name')} />
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-neutral-600 uppercase tracking-wide mb-2">
                           Email Address <span className="text-teal-500">*</span>
                         </label>
                         <input
-                          required type="email" name="email" value={form.email} onChange={handleChange}
-                          
-                          className={inputClass}
+                          type="email" name="email" value={form.email} onChange={handleChange} onBlur={handleBlur}
+                          placeholder="john@company.com"
+                          className={inputClass(visibleError('email'))}
                         />
+                        <FieldError msg={visibleError('email')} />
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-xs font-semibold text-neutral-600 uppercase tracking-wide mb-2">
-                          Company <span className="text-teal-500">*</span>
+                          Phone Number <span className="text-teal-500">*</span>
                         </label>
                         <input
-                          required name="company" value={form.company} onChange={handleChange}
-                          
-                          className={inputClass}
+                          type="tel" name="phone" value={form.phone} onChange={handleChange} onBlur={handleBlur}
+                          placeholder="+91 98765 43210"
+                          className={inputClass(visibleError('phone'))}
                         />
+                        <FieldError msg={visibleError('phone')} />
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-neutral-600 uppercase tracking-wide mb-2">
-                          Area of Interest
+                          Company <span className="text-teal-500">*</span>
                         </label>
-                        <select
-                          name="vertical" value={form.vertical} onChange={handleChange}
-                          className={`${inputClass} appearance-none cursor-pointer`}
-                        >
-                          <option value="">Select a solution...</option>
-                          <option value="water">Water Metering</option>
-                          <option value="agriculture">Agriculture</option>
-                          <option value="facility">Transformer</option>
-                          <option value="other">Other / Multiple</option>
-                        </select>
+                        <input
+                          name="company" value={form.company} onChange={handleChange} onBlur={handleBlur}
+                          placeholder="Your company name"
+                          className={inputClass(visibleError('company'))}
+                        />
+                        <FieldError msg={visibleError('company')} />
                       </div>
                     </div>
 
                     <div>
                       <label className="block text-xs font-semibold text-neutral-600 uppercase tracking-wide mb-2">
-                        Your Requirements <span className="text-teal-500">*</span>
+                        Product / Area of Interest <span className="text-teal-500">*</span>
                       </label>
-                      <textarea
-                        required name="message" value={form.message} onChange={handleChange}
-                        rows={5}
-                        placeholder="Describe what you need to monitor — site type, number of units or assets, scale, and what outcomes you're aiming for..."
-                        className={`${inputClass} resize-none`}
-                      />
+                      <select
+                        name="product" value={form.product} onChange={handleChange} onBlur={handleBlur}
+                        className={`${inputClass(visibleError('product'))} appearance-none cursor-pointer`}
+                      >
+                        <option value="">Select a solution...</option>
+                        <option value="water">Water Metering</option>
+                        <option value="agriculture">Agriculture</option>
+                        <option value="transformer">Transformer Monitoring</option>
+                        <option value="other">Other / Multiple</option>
+                      </select>
+                      <FieldError msg={visibleError('product')} />
                     </div>
 
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-600 uppercase tracking-wide mb-2">
+                        Project Description <span className="text-teal-500">*</span>
+                      </label>
+                      <textarea
+                        name="message" value={form.message} onChange={handleChange} onBlur={handleBlur}
+                        rows={5}
+                        placeholder="Describe what you need to monitor — site type, number of units or assets, scale, and what outcomes you're aiming for..."
+                        className={`${inputClass(visibleError('message'))} resize-none`}
+                      />
+                      <div className="flex items-start justify-between mt-1">
+                        <FieldError msg={visibleError('message')} />
+                        <span className={`text-xs ml-auto ${form.message.trim().length < 20 && form.message.length > 0 ? 'text-red-400' : 'text-neutral-400'}`}>
+                          {form.message.trim().length} / 20 min
+                        </span>
+                      </div>
+                    </div>
+
+                    {submitError && (
+                      <div className="flex items-center gap-2 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600">
+                        <AlertCircle size={15} className="shrink-0" />
+                        {submitError}
+                      </div>
+                    )}
+
                     <div className="flex items-center gap-4 pt-2">
-                      <button type="submit" className="btn-primary px-8 py-3.5 text-sm group">
-                        Send Message <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                      <button
+                        type="submit"
+                        disabled={submitting}
+                        className="btn-primary px-8 py-3.5 text-sm group disabled:opacity-60 disabled:cursor-not-allowed"
+                      >
+                        {submitting ? 'Sending...' : (
+                          <>Send Message <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" /></>
+                        )}
                       </button>
                       <span className="text-xs text-neutral-400">We'll respond within one business day</span>
                     </div>
@@ -154,7 +283,6 @@ export default function Contact() {
 
             {/* Contact info */}
             <div className="space-y-5 reveal-right">
-              {/* Contact details */}
               <div className="bg-neutral-50 rounded-2xl p-6 border border-neutral-100">
                 <h3 className="text-xs uppercase tracking-widest font-semibold text-neutral-500 mb-5">Direct Contact</h3>
                 <div className="space-y-4">
@@ -175,7 +303,6 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Address */}
               <div className="bg-neutral-50 rounded-2xl p-6 border border-neutral-100">
                 <h3 className="text-xs uppercase tracking-widest font-semibold text-neutral-500 mb-5">Office</h3>
                 <div className="flex items-start gap-3">
@@ -184,14 +311,13 @@ export default function Contact() {
                   </div>
                   <address className="text-sm text-neutral-700 not-italic leading-relaxed">
                     Axono IoT Solutions.<br />
-                     Incuspaze Olympia Crest<br />
+                    Incuspaze Olympia Crest<br />
                     Plot No. 73, Rajiv Gandhi Salai,<br />
                     Perungudi, Chennai, Tamil Nadu 600096
                   </address>
                 </div>
               </div>
 
-              {/* SLA */}
               <div className="bg-teal-600 rounded-2xl p-6">
                 <h3 className="text-xs uppercase tracking-widest font-semibold text-teal-200 mb-5">Response SLA</h3>
                 <div className="space-y-3">
