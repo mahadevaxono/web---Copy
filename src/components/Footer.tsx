@@ -68,8 +68,8 @@ export default function Footer() {
               ))}
             </ul>
             <div className="mt-6 pt-6 border-t border-neutral-800">
-              <p className="text-xs text-neutral-600">contact@axono.io</p>
-              <p className="text-xs text-neutral-600 mt-1">+1 (800) 000-AXONO</p>
+              <p className="text-xs text-neutral-600">info@axonoiot.com</p>
+              <p className="text-xs text-neutral-600 mt-1">+91 95667 22424</p>
             </div>
           </div>
         </div>
