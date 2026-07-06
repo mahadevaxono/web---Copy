@@ -14,7 +14,7 @@ const products = [
     tagline: 'The bridge between your sensors and the cloud.',
     description:
       'A rugged, field-ready device that collects data from all connected sensors and transmits it securely to our cloud. Works with 4G LTE, WiFi, and Ethernet. Supports Modbus, analog, and digital sensor inputs.',
-    image: '/images/light_background.jpg',
+    image: '/images/gateway1.png',
     icon: Cpu,
     accentColor: 'teal',
     specs: [
@@ -50,7 +50,7 @@ const products = [
     tagline: 'Enterprise infrastructure, fully managed.',
     description:
       'Our cloud platform handles everything behind the scenes — secure data storage, real-time analytics, automated alerts, and 99.9% uptime. Built for scale, from a single building to thousands of sites.',
-    image: '/images/cloud_platform.png',
+    image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=900',
     icon: Cloud,
     accentColor: 'teal',
     specs: [
@@ -68,7 +68,7 @@ const products = [
     tagline: 'Compact sensors designed for the real world.',
     description:
       'Purpose-built sensors for temperature, humidity, pressure, flow, and level monitoring. Ultra-low power design with battery life measured in years. Wireless connectivity with simple QR-code setup.',
-    image: '/images/edge.png',
+    image: 'https://images.pexels.com/photos/1087727/pexels-photo-1087727.jpeg?auto=compress&cs=tinysrgb&w=900',
     icon: Zap,
     accentColor: 'teal',
     specs: [
@@ -172,8 +172,6 @@ export default function Products() {
       {/* Page Hero */}
       <section className="bg-neutral-950 relative overflow-hidden noise">
         <div className="absolute inset-0">
-          <img src="/images/gateway2.png" alt="" className="w-full h-full object-cover opacity-10 object-center" />
-          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/70 to-neutral-950/50" />
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-teal-700/10 rounded-full blur-3xl" />
         </div>
