@@ -50,7 +50,7 @@ const products = [
     tagline: 'Enterprise infrastructure, fully managed.',
     description:
       'Our cloud platform handles everything behind the scenes — secure data storage, real-time analytics, automated alerts, and 99.9% uptime. Built for scale, from a single building to thousands of sites.',
-    image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=900',
+    image: '/images/cloud+platform.png',
     icon: Cloud,
     accentColor: 'teal',
     specs: [
