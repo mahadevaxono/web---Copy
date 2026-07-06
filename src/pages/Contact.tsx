@@ -191,8 +191,6 @@ export default function Contact() {
                 </div>
               </div>
 
-              
-
               {/* SLA */}
               <div className="bg-teal-600 rounded-2xl p-6">
                 <h3 className="text-xs uppercase tracking-widest font-semibold text-teal-200 mb-5">Response SLA</h3>
