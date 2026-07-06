@@ -191,28 +191,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Hours */}
-              <div className="bg-neutral-50 rounded-2xl p-6 border border-neutral-100">
-                <h3 className="text-xs uppercase tracking-widest font-semibold text-neutral-500 mb-5">Business Hours</h3>
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-8 h-8 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shrink-0">
-                    <Clock className="w-3.5 h-3.5 text-teal-600" />
-                  </div>
-                  <div className="text-sm text-neutral-600 leading-relaxed">All times in IST (UTC+5.30)</div>
-                </div>
-                <div className="space-y-2.5 pl-11">
-                  {[
-                    { day: 'Mon – Fri', time: '09:00 – 18:00' },
-                    { day: 'Saturday', time: '09:00 – 13:00' },
-                    { day: 'Sunday', time: 'Closed' },
-                  ].map((row) => (
-                    <div key={row.day} className="flex justify-between text-sm">
-                      <span className="text-neutral-500">{row.day}</span>
-                      <span className={`font-medium ${row.time === 'Closed' ? 'text-neutral-400' : 'text-neutral-800'}`}>{row.time}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              
 
               {/* SLA */}
               <div className="bg-teal-600 rounded-2xl p-6">
