@@ -159,10 +159,8 @@ export default function Contact() {
                 <h3 className="text-xs uppercase tracking-widest font-semibold text-neutral-500 mb-5">Direct Contact</h3>
                 <div className="space-y-4">
                   {[
-                    { icon: Mail, label: 'General', value: 'contact@axono.io' },
-                    { icon: Mail, label: 'Sales', value: 'sales@axono.io' },
-                    { icon: Mail, label: 'Support', value: 'support@axono.io' },
-                    { icon: Phone, label: 'Phone', value: '+1 (800) 000-AXONO' },
+                    { icon: Mail, label: 'General', value: 'info@axonoiot.com' },
+                    { icon: Phone, label: 'Phone', value: '+91 95667 22424' },
                   ].map((item) => (
                     <div key={item.label} className="flex items-start gap-3">
                       <div className="w-8 h-8 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shrink-0">
