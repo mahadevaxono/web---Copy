@@ -198,7 +198,7 @@ export default function Contact() {
                   <div className="w-8 h-8 bg-white border border-neutral-200 rounded-lg flex items-center justify-center shrink-0">
                     <Clock className="w-3.5 h-3.5 text-teal-600" />
                   </div>
-                  <div className="text-sm text-neutral-600 leading-relaxed">All times in SGT (UTC+8)</div>
+                  <div className="text-sm text-neutral-600 leading-relaxed">All times in IST (UTC+5.30)</div>
                 </div>
                 <div className="space-y-2.5 pl-11">
                   {[
