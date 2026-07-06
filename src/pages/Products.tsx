@@ -14,7 +14,7 @@ const products = [
     tagline: 'The bridge between your sensors and the cloud.',
     description:
       'A rugged, field-ready device that collects data from all connected sensors and transmits it securely to our cloud. Works with 4G LTE, WiFi, and Ethernet. Supports Modbus, analog, and digital sensor inputs.',
-    image: '/images/gateway1.png',
+    image: '/images/gateway2.png',
     icon: Cpu,
     accentColor: 'teal',
     specs: [
@@ -50,7 +50,7 @@ const products = [
     tagline: 'Enterprise infrastructure, fully managed.',
     description:
       'Our cloud platform handles everything behind the scenes — secure data storage, real-time analytics, automated alerts, and 99.9% uptime. Built for scale, from a single building to thousands of sites.',
-    image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=900',
+    image: '/images/cloud_platform.png',
     icon: Cloud,
     accentColor: 'teal',
     specs: [
@@ -68,7 +68,7 @@ const products = [
     tagline: 'Compact sensors designed for the real world.',
     description:
       'Purpose-built sensors for temperature, humidity, pressure, flow, and level monitoring. Ultra-low power design with battery life measured in years. Wireless connectivity with simple QR-code setup.',
-    image: 'https://images.pexels.com/photos/1087727/pexels-photo-1087727.jpeg?auto=compress&cs=tinysrgb&w=900',
+    image: '/images/edge.png',
     icon: Zap,
     accentColor: 'teal',
     specs: [
